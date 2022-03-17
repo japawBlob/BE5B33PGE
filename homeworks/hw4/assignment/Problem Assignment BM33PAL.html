@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="cache-control" content="no-cache">
+  <link rel="stylesheet" type="text/css" href="Problem%20Assignment%20BM33PAL_files/default.html">
+  <title>Problem Assignment BM33PAL</title>
+</head>
+<body>
+ <div class="main">
+
+<h2><font color="blue">Optimal Expedition Pairs</font></h2>
+
+Quido has a list of various events organized by CTU Travel Society. 
+Some events in the list are jungle forest expeditions.
+Quido is going to  take part in exactly two expeditions.  <br>
+There must be at least 7 free days between the last day of the first expedition
+and the first day of the second expedition.<br>
+Moreover, not to interfere with the members of the other expeditions, he has to follow one additional rule:<br>
+In the free days between the first and the second Quido's expedition, there must not be a day
+in which some other expedition starts or ends.
+<br>
+All expeditions take place in one calendar year, that year is not a leap year.
+
+
+<br>
+<br>
+
+The list of events has a special structure.
+It is a list of text lines, each line describes exactly one event.
+An event is an expedition if and only if the corresponding text line contains at least one correctly formed date.
+
+A correctly formed date is an unempty sequence of digits followed by a period, followed by
+another sequence of digits and another period.
+The second digit sequence is interpreted as a number of month and
+the first digit sequence is interpreted as a number of the day in that month.
+The whole date defined by  this two numbers must be a date in a non-leap year. The examples of correctly formed dates are:
+<pre>  1.1.  31.1.   1.2.  28.2.  9.9.  10.10.  11.10.  20.12.  31.12.
+</pre>
+
+A correctly formed date can be immediately preceded only by a space 
+character and also
+it can be immediately followed only by a space character..
+A correctly formed date cannot be a substring of a bigger string which 
+does not contain spaces.
+For example, "day16.9." is not a correctly formed date and it does not 
+contain a correctly formed date.
+There is a single exception to this rule, a correctly formed date may be
+ immediately followed by a comma and a space, like e.g. "12.8., 16.11., 
+and similar".
+Even in this case, the correctly formed date may be preceded only by a 
+space.
+
+<br><br>
+When the line describing the expedition contains exactly one correctly 
+formed date the duration of  the expedition is exactly one day.<br>
+When the line describing the expedition contains more than one correctly
+ formed date the duration of  the expedition is  equal
+to the difference, measured in days, between the latest correctly formed
+ date and the earliest correctly formed date, increased by one.
+<br>
+For example, the duration of an expedition described by a line with dates 31.5., 5.6., 1.6. and 29.5. is 8 days.
+
+<br>
+<br>
+Quido wants to choose such pair of expeditions which satisfy the given rules and which total duration is maximum possible.
+There might be more pairs of such expeditions on the list, Quido calls each such pair <i>optimal expedition pair</i>.
+<br>
+
+
+
+
+
+
+<h3><font color="blue">The task</font></h3>
+<p align="justify">
+You are given a list of text lines. Find all optimal expedition pairs in the list.
+</p>
+<hr>
+
+
+<h3><font color="blue">Input</font></h3>
+<p align="justify">
+The first input line contains one integer <i>N</i>, the number of following lines in the input.
+Next, the list of <i>N</i> lines follows,  each line consists of one or 
+more words separated by spaces and it is terminated by a dot (period, 
+full stop) symbol. <br>
+Characters in the input lines are small and capital letters of English 
+alphabet,
+('abcd...xyz', 'ABCD...XYZ'), digits ('1234567890'), comma and period 
+(dot, full stop).
+Each line contains at most 40 words, separated by spaces, each word 
+length is at most 100 characters and it contains no spaces.
+The label of the first line in the list is considered to be 1, the label
+ of the second line in  the list is considered to be 2, and so on,
+The label of the last line in the list is considered to be <i>N</i>.
+<br>
+It holds, 2 ≤ <i>N</i> ≤ 1000.
+<br>
+<br>
+</p>
+
+<h3><font color="blue">Output</font></h3>
+<p align="justify">
+The first output line contains the total number of days in any pair of optimal expedition pair in the input.
+The next output lines contain the list of all optimal expedition pairs in the input, each pair occupies one line.
+<br> <br>
+Each optimal pair P is described by six values P(1), P(2), P(3), P(4), P(5), P(6), separated by spaces.
+The values P(2), P(3) are the dates of the first and the last day in the first expedition in the pair,
+The values P(5), P(6) are the dates of the first and the last day in the second expedition in the pair.
+The value P(1) is the label of the input line with the description of the first expedition in the pair.
+The value P(4) is the label of the input line with the description of the second expedition in the pair.
+<br>
+<br>
+The output list is sorted first by values P(2) (start day of the first expedition), then, if those
+values are equal, it is sorted by values P(5) (start day of the second expedition), then, if those
+values are equal, it is sorted by values P(1) (label of the line describing the first expedition),  then, if those
+values are equal, it is sorted by values P(4) (label of the line describing the second expedition).
+<br>
+All dates in the output are correctly formed dates.
+<br>
+It is guaranteed that there is at least one optimal expedition pair in the input.
+
+</p>
+
+
+<h3><font color="blue">Example 1</font></h3>
+<b>Input</b><br>
+<pre>14
+That year winter weather lasted till early May.
+Jill left in February, she spent 8 days in Berlin.
+The newly planted trees were held up by wooden frames.
+There were only seventeen players in the club in August.
+She said it happened on 23.12. and others supported her view.
+Tom, Pat and Sue had no time in November, however.
+April and May were her favourite names and 27 was her favourite number.
+In August it was possible to collect 23, 24, and 25 specimens, respectively.
+They intended to arrive on 23.8. or on 27.8.
+We could not find any documents in the 4th drawer.
+Sand was blown on the beach on 1.1. in Perth.
+Numbers 11, 12 or 14 may be brought in focus in April this year.
+Another example is 5 and 10 of February.
+And finally, check 1 2 3 in July against 5 6 7 in other months.
+</pre>
+
+<b>Output</b><br>
+<pre>6
+11 1.1. 1.1. 9 23.8. 27.8.
+9 23.8. 27.8. 5 23.12. 23.12.
+</pre>
+
+
+
+
+<!-- EXAMPLE 2 -------------------------------------------------------------------------------------------------------------------- -->
+
+
+
+<h3><font color="blue">Example 2</font></h3>
+<b>Input</b><br>
+<pre>7
+trip1 20.9. 24.9. is a short one.
+trip1 20.8. 24.8. is a short one.
+trip1 20.7. 24.7. is a short one.
+trip2 20.6. 24.6. is a short one.
+trip3 20.5. 24.5. is a short one.
+trip4 20.4. 24.4. is a short one.
+trip5 20.3. 24.3. is a short one.
+</pre>
+
+
+
+<b>Output</b><br>
+<pre>10
+7 20.3. 24.3. 6 20.4. 24.4.
+6 20.4. 24.4. 5 20.5. 24.5.
+5 20.5. 24.5. 4 20.6. 24.6.
+4 20.6. 24.6. 3 20.7. 24.7.
+3 20.7. 24.7. 2 20.8. 24.8.
+2 20.8. 24.8. 1 20.9. 24.9.
+</pre>
+
+
+
+<!-- EXAMPLE 3 -------------------------------------------------------------------------------------------------------------------- -->
+
+
+ <h3><font color="blue">Example 3</font></h3>
+
+<b>Input</b><br>
+<pre>8
+January February.
+March 3 April.
+March 3 4 April.
+April 4 5 may.
+32.32. 16.7. 31.31.
+32.32. 18.7. July 18 31.31.
+28.2. February 29.
+29.2. February 28.
+</pre>
+
+<b>Output</b><br>
+<pre>2
+7 28.2. 28.2. 5 16.7. 16.7.
+</pre>
+
+<hr>
+
+<h3><font color="blue">Public data</font></h3>
+<p align="justify">
+The public data set is intended for easier debugging and approximate 
+program correctness checking. The public data set is stored also in the 
+upload system and each time a student submits a solution it is run on 
+the public dataset and the program output to  stdout and stderr is 
+available to him/her.
+<br>
+<a href="https://cw.felk.cvut.cz/brute/data/ae/release/2020l_be5b33pge/pge2020/evaluation/getdata.php?task=expeditions_py&amp;item=datapub.zip"><b>Link to public data set</b></a>
+</p>
+
+
+
+</div>
+
+
+
+
+
+</body></html>
