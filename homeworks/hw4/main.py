@@ -132,31 +132,30 @@ class TripPlanner(object):
         valid = False
         for i in self.year_array:
             print(i)
-        for current_event in self.year_array:
-            event = current_event
-            while event is not None:
+        for event in self.year_array:
+            while True:
                 if event.type != "x":
                     if (event.type == "Start" or event.type == "OneDay") and last_ended.type != "x" and valid:
                         if day_counter > 7:
-                            if most_time_spent < last_ended.length + event.length:
-                                most_time_spent = last_ended.length + event.length
-                                potentially_optimal_pairs.clear()
-                                potentially_optimal_pairs.append((last_ended, event))
-                            elif most_time_spent == last_ended.length + event.length:
-                                potentially_optimal_pairs.append((last_ended, event))
+                            current_event = event
+                            while current_event is not None:
+                                current_last_ended = last_ended
+                                while current_last_ended is not None:
+                                    if most_time_spent < current_last_ended.length + current_event.length:
+                                        most_time_spent = current_last_ended.length + current_event.length
+                                        potentially_optimal_pairs.clear()
+                                        potentially_optimal_pairs.append((current_last_ended, current_event))
+                                    elif most_time_spent == current_last_ended.length + current_event.length:
+                                        potentially_optimal_pairs.append((current_last_ended, current_event))
+                                    current_last_ended = current_last_ended.same_place_occupant
+                                current_event = current_event.same_place_occupant
                         else:
                             valid = False
                     if event.type == "End" or event.type == "OneDay":
-
-                        # TODO pot5ebuju, aby se v9c OneDay eventu v jednom dni vyhodnocovalo jako start, ale neprepisoval se mi last event, protoze potrebuji prvni entry, ktera ma odkazy na zbytek
-
                         last_ended = event
                         valid = True
-                        day_counter = 0
-                        break
                     day_counter = 0
-                event = event.same_place_occupant
-            day_counter += 1
+                day_counter += 1
         self.optimal_pairs = potentially_optimal_pairs
 
     def print_optimal_pairs(self):
@@ -174,5 +173,6 @@ if __name__ == '__main__':
 
     #print(blob.year_array)
 
-    #for Day in blob.year_array:
+    # for Day in blob.year_array:
     #    print(str(Day.day_date()) + " " + str(Day))
+
