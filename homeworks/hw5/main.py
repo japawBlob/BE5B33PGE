@@ -12,6 +12,9 @@ class PGEBinaryTree:
             self.RSR = input_tuple[8]
         self.root = None
 
+    def generate_tree(self):
+
+
     class Node:
         def __init__(self, key, depth, parent=None, left=None, right=None):
             self.key = key
@@ -36,7 +39,7 @@ class PGEBinaryTree:
             self.disbalance = SL+SR
             return SL + SR
 
-        def get_2_balance(self):
+        def is_2_balance(self):
             number_of_balanced_left = 0
             number_of_balanced_right = 0
             if self.left_child is not None:
@@ -78,11 +81,22 @@ class PGEBinaryTree:
                 ret &= self.left_child.is_weakly_dominant()
             return ret
 
-        def is_L1_tree(self, left_child_found=False):
+        def is_L1_tree(self):
+            left_child_found = [False]
+            ret = self.l1_recu(left_child_found)
+            return ret & left_child_found[0]
+
+        def l1_recu(self, left_child_found):
             if self.left_child is None and self.right_child is not None:
                 return False
-            ret = left_child_found
-
+            if self.left_child is not None and self.right_child is None:
+                left_child_found[0] = True
+            ret = True
+            if self.right_child is not None:
+                ret &= self.right_child.is_L1_tree()
+            if self.left_child is not None:
+                ret &= self.left_child.is_weakly_dominant()
+            return ret
 
 
 if __name__ == '__main__':
