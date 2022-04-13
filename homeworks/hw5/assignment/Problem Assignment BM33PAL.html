@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="cache-control" content="no-cache">
+  <link rel="stylesheet" type="text/css" href="Problem%20Assignment%20BM33PAL_files/default.html">
+  <title>Problem Assignment BM33PAL</title>
+</head>
+<body>
+ <div class="main">
+
+<h2><font color="blue">Binary Tree Properties</font></h2>
+<p align="justify">
+
+In this problem, we present a few properties of rooted binary trees. First, let us introduce some notation.
+<br><br>
+
+Each node of a tree stores an integer value named key.
+<br>
+Let <i>n</i> be a node in a tree <i>T</i>. We denote by <i>n</i>.<i>key</i> the value of the key stored in <i>n</i>.
+<br>
+By <i>n</i>.<i>left</i> and <i>n</i>.<i>right</i> and <i>n</i>.<i>parent</i> we denote the left and the right child of <i>n</i> and the parent node of <i>n</i>, respectively.
+<br>
+By <i>n</i>.<i>tree</i> we denote the subtree of <i>T</i> rooted in <i>n</i>. The tree <i>n</i>.<i>tree</i> contains all nodes <i>y</i> with the property that <i>n</i>
+lies on the path from <i>y</i> to the root of <i>T</i>.   We denote by <i>T</i>.<i>root</i>  the root of the tree <i>T</i>.
+<br>
+By <i>n</i>.<i>depth</i> we denote the depth of node <i>n</i>. The depth of the tree root is 0,
+for any other node <i>x</i> it holds, <i>x</i>.<i>depth</i> = <i>x</i>.<i>parent</i>.<i>depth</i> + 1.
+<br><br>
+
+Subsequently, we define eight proprties of nodes and/or (sub)trees.
+<br>
+
+<b>1.</b> We define the <b>cost</b> of a node <i>n</i>  to be the value <i>n</i>.<i>key</i> × (<i>n</i>.<i>depth</i>+1).
+<br>
+
+<b>2.</b> We define the <b>disbalance</b> of node a <i>n</i> to be the absolute value |<i>SL</i>−<i>SR</i>| where <i>SL</i> and <i>SR</i> is the sum of keys of all nodes in
+ <i>n</i>.<i>left</i>.<i>tree</i> and <i>n</i>.<i>right</i>.<i>tree</i>, respectively. When a tree is empty we define its sum of keys to be equal to 0.
+<br>
+
+<b>3.</b> We say that a node <i>n</i> is <b>2-balanced</b> if both trees <i>n</i>.<i>left</i>.<i>tree</i> and <i>n</i>.<i>right</i>.<i>tree</i> contain the same number of <i>2-nodes</i>.
+A node is a <b><i>2-node</i></b> if it has exactly 2 children.  An empty tree contains 0 <i>2-nodes</i>.
+<br>
+
+<b>4.</b> We say that two distinct nodes <i>x</i> and <i>y</i> are <b>siblings</b> if <i>x</i>.<i>parent</i> = <i>y</i>.<i>parent</i>.
+We say that two siblings <i>x</i> and <i>y</i> are <b>parity siblings</b> if the parity
+of <i>x</i>.<i>key</i> is the same as the parity of <i>y</i>.<i>key</i>. The parity of an integer <i>z</i> is defined as <i>z</i> mod 2.
+<br>
+
+<b>5.</b> We say that a node <i>n</i> is <b>locally minimal</b>  if <i>n</i>.<i>key</i> is smaller than or equal to the key of any node in <i>n</i>.<i>tree</i>.
+We consider all leaves in the tree to be locally minimal nodes.
+<br>
+
+<b>6.</b> We say that an internal node <i>n</i> is <b>weakly dominant</b> if <i>n</i>.<i>key</i> is bigger than or equal to the value of the key of any leaf in <i>n</i>.<i>tree</i>.
+<br>
+
+<b>7.</b> We say that the tree <i>n</i>.<i>tree</i> is a <b><i>L1-tree</i></b> if it contains at least one node which has only left child and
+it contains no node which has only right child. Note that a <i>L1-tree</i> might be a subtree of another (bigger) <i>L1-tree</i>.
+<br>
+
+<b>8.</b> We say that a sequence of nodes <i>n</i><sub>1</sub>, <i>n</i><sub>2</sub>, <i>n</i><sub>3</sub>, ..., <i>n</i><sub><i>k</i></sub> is an <b>increasing path</b>
+if it contains at least two nodes and if it also holds<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<i>n</i><sub><i>j</i></sub> = <i>n</i><sub><i>j</i>+1</sub>.<i>parent</i>  and <i>n</i><sub><i>j</i></sub>.<i>key</i> ≤ <i>n</i><sub><i>j</i>+1</sub>.<i>key</i>,
+for <i>j</i> = 1, 2, ..., <i>k</i>−1. <br>
+ The <b>value</b> of an increasing path is the sum of the keys of all nodes in the increasing path.
+
+ <br><br>
+
+Finally, we present a recursive specification of a pseudo-random binary tree.<br>
+An integer named structure regulator is associated with each node <i>n</i> and it is denoted by <i>n</i>.<i>SR</i>.
+There is a 9-tuple of non-negative integers (AL, AR, C0, CL, CR, D, M, RK, RSR), where C0 ≤ CL ≤ CR ≤ M.
+The structure and the keys of the left and the right subtree of each node <i>n</i> are defined as follows: <br>
+
+</p><ul>
+<li>  <i>T</i>.<i>root</i>.<i>SR</i> = RSR.
+</li><li> If <i>n</i>.<i>SR</i> &lt; C0 or if <i>n</i>.<i>depth</i> = D then node <i>n</i> has no children.
+</li><li> If C0 ≤ <i>n</i>.<i>SR</i> &lt; CL then node <i>n</i> has only left child and <i>n</i>.<i>left</i>.<i>SR</i> = (<i>n</i>.<i>SR</i> * AL) mod M.
+</li><li> If CL ≤ <i>n</i>.<i>SR</i> &lt; CR then node <i>n</i> has only right child and <i>n</i>.<i>right</i>.<i>SR</i> = (<i>n</i>.<i>SR</i> * AR) mod M.
+</li><li> If CR ≤ <i>n</i>.<i>SR</i> &lt; M then node <i>n</i> has both left and right children
+   and <i>n</i>.<i>left</i>.<i>SR</i> = (<i>n</i>.<i>SR</i> * AL) mod M and <i>n</i>.<i>right</i>.<i>SR</i> = (<i>n</i>.<i>SR</i> * AR) mod M.
+</li></ul>
+
+<ul>
+<li> <i>T</i>.<i>root</i>.<i>key</i> = RK.
+</li><li> If <i>n</i>.<i>left</i> exists then  <i>n</i>.<i>left</i>.<i>key</i>  = (AL * (<i>n</i>.<i>key</i>+1)) mod M.
+</li><li> If <i>n</i>.<i>right</i> exists then  <i>n</i>.<i>right</i>.<i>key</i>  = (AR * (<i>n</i>.<i>key</i>+2)) mod M.
+
+</li></ul>
+
+
+
+
+<br>
+<table width="890" border="0" align="center">
+   <tbody><tr>
+   <td align="center">
+   <img style="width=&quot;5170px&quot;" src="Problem%20Assignment%20BM33PAL_files/getdata.php" height="221px">
+   <!--
+   <img style=width="517px" height="221px" src="img1.png" />
+   -->
+<br><br>
+<b>Image 1.</b> A binary tree specified by the nine-tuple (AL, AR, C0, 
+CL, CR, D, M, RK, RSR) = (12, 13, 2, 8, 12, 4, 20, 9, 12). Node keys are
+ drawn in ovals, 
+node structure regulators are drawn in rectangles.<br>
+For example, the value of the root structure regulator RSR is 12. It 
+holds, CR = 12 ≤ 12 &lt; 20 = M, therefore the root has two children.
+The value of the structure regulator of the left child of the root is 
+(RSR * AL) mod M = (12 * 12) mod 20 = 144 mod 20 = 4.<br>
+It holds, C0 = 2 ≤ 4 &lt; 8 = CL, therefore the left child of the root has itself only the left child (grandchild of the root).
+
+
+
+
+</td>
+</tr>
+</tbody></table>
+
+  <br>
+
+<!-- T H E   T A S K  -------------------------------------------------------------------------------------------------------------------- -->
+
+
+<h3><font color="blue">The task</font></h3>
+<p align="justify">
+You are given a binary tree <i>T</i>. Calculate the following eight characteristics of <i>T</i>: <br>
+1. The sum of costs of all nodes in <i>T</i>.           <br>
+2. The sum of disbalances of all nodes in <i>T</i>.       <br>
+3. The sum of keys in all 2-balanced nodes in <i>T</i>.       <br>
+4. The number of parity siblings in <i>T</i>.       <br>
+5. Sum of keys of all locally minimal nodes in <i>T</i>.       <br>
+6. The number of weakly dominant nodes in <i>T</i>.       <br>
+7. The number of <i>L1-trees</i> in <i>T</i>.       <br>
+8. The maximum value of an increasing path in <i>T</i>.
+</p>
+
+
+ <hr>
+
+<!-- I N P U T  -------------------------------------------------------------------------------------------------------------------- -->
+
+<h3><font color="blue">Input</font></h3>
+<p align="justify">
+Input consists of one text line with nine integers AL,  AR,  C0,  CL,  CR,  D,  M,  RK,  RSR, separated by spaces.<br>
+It holds 0 ≤ AL,  AR,  C0,  CL,  CR,  D,  M,  RK,  RSR ≤1000.  C0 ≤ CL ≤ CR ≤ M.<br>
+It is guaranteed that the tree which is specified by the tuple (AL,  AR,
+  C0,  CL,  CR,  D,  M,  RK,  RS) has as at most 100 000 nodes.
+
+
+</p>
+
+<h3><font color="blue">Output</font></h3>
+<p align="justify">
+Output consists of eight text lines, each line contains a single integer equal to the value of the corresponding
+property (1. – 8. specified in The task paragraph) of the binary tree which is built according to the input specification.<br>
+
+
+</p>
+
+
+� 
+� 
+� �
+<table width="900" border="0" align="center"><tbody><tr><td width="300" align="left">
+    <h3><font color="blue">Example 1</font></h3>
+    <b>Input</b><br>
+<pre>12 13 2 8 12 4 20 9 12
+</pre>
+
+<b>Output</b><br>
+<pre>494
+214
+66
+2
+87
+3
+4
+37
+</pre>
+ <br><br>
+
+  </td>
+  <td width="30" align="center">
+  </td><td>
+
+� </td><td align="left">
+<pre>      __ 9______________
+______ 0      ________ 3__
+12____      __ 8____     5____
+  __ 2    __ 8  __10__    __11
+  16       8    12  16     4
+------------------------------
+      __12______________
+______ 4      ________16__
+ 8____      __12____     8____
+  __ 4    __ 4  __16__    __ 4
+   8       8    12   8     8
+</pre>
+
+
+<b>Scheme 1.</b> The tree in Example 1. The upper part depicts the keys 
+of the tree, the lower part depicts the structure regulator values 
+associated with each particular node.
+
+</td></tr></tbody></table>
+
+
+
+<!-- EXAMPLE 2 -------------------------------------------------------------------------------------------------------------------- -->
+
+
+
+� 
+� 
+� �
+<table width="900" border="0" align="center"><tbody><tr><td width="300" align="left">
+    <h3><font color="blue">Example 2</font></h3>
+    <b>Input</b><br>
+<pre>11 12 7 15 23 5 31 28 26
+</pre>
+
+
+<b>Output</b><br>
+<pre>452
+259
+65
+1
+58
+1
+0
+35
+</pre>
+ <br><br>
+
+  </td>
+  <td width="30" align="center">
+  </td><td>
+
+� </td><td align="left">
+    <pre>              __28__
+______________ 9  19
+17________
+    ____11__
+  __ 8__   1__
+   6  27     5
+--------------------
+              __26__
+______________ 7   2
+15________
+    ____25__
+  __27__  21__
+  18  14     4
+   </pre>
+
+
+<b>Scheme 2.</b> The tree in Example 2. The upper part depicts the keys 
+of the tree, the lower part depicts the structure regulator values 
+associated with each particular node.
+</td></tr></tbody></table>
+
+
+
+<!-- EXAMPLE 3 -------------------------------------------------------------------------------------------------------------------- -->
+
+
+
+� 
+� 
+� �
+<table width="900" border="0" align="center"><tbody><tr><td width="300" align="left">
+    <h3><font color="blue">Example 3</font></h3>
+    <b>Input</b><br>
+<pre>12 13 3 10 16 6 29 18 16
+</pre>
+
+
+<b>Output</b><br>
+<pre>1645
+866
+145
+1
+174
+4
+7
+110
+</pre>
+<br><br><br>
+
+  </td>
+  <td width="30" align="left">
+  </td><td>
+
+� </td><td align="left">
+    <pre>                          ____18____
+__________________________25__  __28
+22____________               3   0
+      ______22______
+    __15____    __22____
+  __18  __18  __15  __22__
+  25    25    18    15  22
+------------------------------------
+                          ____16____
+__________________________18__  __ 5
+13____________               2   2
+      ______24______
+    __27____    __22____
+  __ 5  __ 3  __ 3  __25__
+   2     7     7    10   6
+
+   </pre>
+
+<b>Scheme 3.</b> The tree in Example 3. The upper part depicts the keys 
+of the tree, the lower part depicts the structure regulator values 
+associated with each particular node.
+</td></tr></tbody></table>
+
+
+<h3><font color="blue">Public data</font></h3>
+<p align="justify">
+The public data set is intended for easier debugging and approximate 
+program correctness checking. The public data set is stored also in the 
+upload system and each time a student submits a solution it is run on 
+the public dataset and the program output to  stdout and stderr is 
+available to him/her.
+<br>
+<a href="https://cw.felk.cvut.cz/brute/data/ae/release/2021l_be5b33pge/pge2021/evaluation/getdata.php?task=treeproperties&amp;item=datapub.zip"><b>Link to public data set</b></a>
+</p>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>
