@@ -1,8 +1,8 @@
 import unittest
 
 import main
-import main as p
 from unittest.mock import patch
+from main import load_input
 
 
 class MyTestCase(unittest.TestCase):
@@ -13,13 +13,15 @@ class MyTestCase(unittest.TestCase):
             # print(pub_in)
             with open(pub_in, "r") as f:
                 with patch('builtins.input', side_effect=f):
-                    blob = main.PGEBinaryTree()
+                    tree = main.PGEBinaryTree(load_input())
+                    tree.init_tree()
+                    tree.go_trough_tree()
             pub_out = "datapub/pub" + i + ".out"
             with open(pub_out, "r") as f:
                 result = f.read()
                 # print(blob.get_optimal_pairs())
                 # print(result)
-                self.assertEqual(blob.get_optimal_pairs(), result)
+                self.assertEqual(tree.get_solution(), result)
 
 
 if __name__ == '__main__':
