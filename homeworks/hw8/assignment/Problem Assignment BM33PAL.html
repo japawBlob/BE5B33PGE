@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="cache-control" content="no-cache">
+  <link rel="stylesheet" type="text/css" href="Problem%20Assignment%20BM33PAL_files/default.html">
+  <title>Problem Assignment BM33PAL</title>
+</head>
+<body>
+ <div class="main">
+
+<h2><font color="blue">Tiled Text Files</font></h2>
+
+<i>Before you start reading the deatils of the problem statement, you may want to look at the examples and at the public data
+available at the bottom of the page to get an intuitive visual understanding of the task. The detailed description below
+would be then easier to read and comprehend, hopefully.
+</i>
+<br><br>
+
+The university team developing AI modules for the autonomous vehicles driving software is currently working on a problem
+of text recognition in images captured by vehicle cameras.<br>
+They are preparing a set of artificial images to test the modules.
+Each image consists of a natural scene into which is pasted a
+computer generated image of some text.  Before the text is renedered, it is stored in text files which
+formatting reflects, to some degree, the appearance of the final rendering.
+<br>
+
+Each text is originally stored in a plain text file, called input file.
+Then, the input file is converted to the so-called tiled file, which is later used as an input to the
+image renderer.
+<br><br>
+
+The description of the tiled file and its contents is given below.
+<br><br>
+
+A tiled file is a regular text file, it differs from usual text files 
+only by the arrangment of the text information stored in it.<br>
+
+The text in the tiled text file, when printed with a non-proportional font, appears as printed on separate rectangular tiles.
+Each tile has a border and an interior. The border is one character wide.
+The four corners of the tile, which are part of its border, are plus signs ( '+', ASCII 43 ).
+The other symbols at the tile border are minus sign ( '-', ASCII 43 ) which are printed on the horizontal borders
+and the vertical bar ( '|', ASCII 124 ) which are printed on the vertical borders.
+<br><br>
+
+If tile <i>A</i> shares a border with another tile <i>B</i> and a corner of <i>B</i> also coincides with the border of <i>A</i>
+then the corner of <i>B</i> (symbol '+') is also printed as a part of border of <i>A</i>, no matter which
+symbol would be on that position if <i>A</i> was printed alone.
+<br><br>
+
+The tiles are grouped into so-called blocks.
+Each block consists of a sequence of tiles which occupy the same set of consecutive lines in the tiled file.
+The height of all tiles in a block is the same.
+The first column of the first tile in the block coincides with the first column in the file.
+The width of the block is the column index of the rightmost border of the last tile in the block, provided column
+indexes are 1-based.
+The blocks in a tiled file are vertically adjacent. For any two consecutive blocks it holds that
+the top border(s) of the tile(s) in the lower block coincides, at least partially,  with the
+bottom border of the tile(s) in the upper block. <br>
+Example 3 shows an arrangement of a tiled file with three blocks.
+
+
+
+<br><br>
+The order of the tiles in the tiled file is defined as follows:
+The first tile is the leftmost tile in the first block.
+For any given tile which is not the last one in the tiled file, the next tile is
+either its neighbour tile to the right (if that tile exists)
+or the leftmost tile in the next block in the file.
+<br><br>
+
+
+A word in an input file is a sequence of consecutive characters which does not contain any whitespace character.
+Also, the first character of a word is either a first character in the text line
+or it is immediately preceded by a whitespace character. Additionally,
+the last character of each word is either the last character in the text line
+or it is immediately followed by a whitespace character.
+
+<br><br>
+
+A file segment in an input file is a contiguous subsequence of words in the input file.
+The length of the file segment is the number of the words it contains.
+The lengths of words in a segment form a non-increasing sequence.
+Note that file segment does not contain any whitespace characters.
+An input file is correctly segmented if each word in the input file belongs to some
+file segment and the number of file segments is minimum possible.
+<br><br>
+
+The text of the input file is stored in the tiled file as follows:
+<ul>
+<li>The input file is considered to be correctly segmented. Then, each file segment
+is written in the interior of a tile in the tiled file.<br>
+</li><li>The order of file segments in the input file corresponds to the order of the tiles in the tiled file.<br>
+</li><li>The first word in a file segment is printed at the bottom of its corresponding tile interior,
+the next word in the file segment is printed immediately above the first word and so on, the last word in the
+file segment is printed above all previous words of the same file segment.<br>
+</li><li>All words printed in a tile are aligned to the right border of the tile.<br>
+</li><li>There is a space at each position which does not contain a character of a word of the file segment in the tile interior.<br>
+</li><li>The width of any tile containing a  file segment is minimum possible. <br>
+</li><li>Additionally, an integer parameter <i>D</i> is given. It specifies the maximum possible width
+of each block in the output tiled file. <br>
+</li><li>The number of tiles in each block is maximum possible provided the maximum width parameter <i>D</i> is respected.
+</li><li>The height of each block is minimum possible provided all previous conditions are respected.
+</li></ul>
+
+
+
+<h3><font color="blue">The task</font></h3>
+<p align="justify">
+Given an input text file  produce an output tiled file according to description above.
+</p>
+
+<hr>
+
+<h3><font color="blue">Input</font></h3>
+<p align="justify">
+The first input line contains a single integer <i>D</i> denoting the maximum width
+of a block in the output tiled file.<br>
+Next, there are at least two text lines representing the contents of the input file.
+All characters in the input file are either printable ASCII characters or end-of-line characters
+or tabulator characters.
+Note that the input file may contain one or more consecutive empty lines.<br>
+It is guaranteed that the length of any word in the input file does not exceed <i>D</i>−2. <br>
+The size of the input file is less than 900 KB.
+
+
+</p><h3><font color="blue">Output</font></h3>
+<p align="justify">
+The output contains the copy of the contents of the tiled file.
+Each line in the output corresponds to a line in the tiled file.
+</p>
+
+<center>
+<table width="95%">
+	<colgroup><col width="25%">
+	<col width="30%">
+	<col width="40%">
+	<col width="5%">
+	<col width="10%">
+    </colgroup><tbody><tr>
+
+<td valign="top">
+	<h3><font color="blue">Example 1</font></h3>
+<b>Input</b><br>
+<pre>19
+ab cdefg hij
+kl mn opq rstuv wx
+yz01 23 4567 89
+</pre>
+
+<b>Output</b><br>
+<pre>+--+-----+---+
+|  |   mn|   |
+|  |   kl|   |
+|  |  hij|   |
+|ab|cdefg|opq|
++--+--+--+-+-+--+
+|   wx|  23|  89|
+|rstuv|yz01|4567|
++-----+----+----+
+</pre>
+
+
+</td>
+
+<td valign="top">		
+	<h3><font color="blue">Example 2</font></h3>
+<b>Input</b><br>
+<pre>21
+ab cdefg hij
+kl mn opq rstuv wx
+yz01 23 4567 89
+
+</pre>
+
+<b>Output</b><br>
+<pre>+--+-----+---+-----+
+|  |   mn|   |     |
+|  |   kl|   |     |
+|  |  hij|   |   wx|
+|ab|cdefg|opq|rstuv|
++--+-+---++--+-----+
+|  23|  89|
+|yz01|4567|
++----+----+
+</pre>
+
+
+</td>
+
+<td valign="top">		
+	<h3><font color="blue">Example 3</font></h3>
+<b>Input</b><br>
+<pre>40
+On February 3, 1707, the Austrian Emperor Joseph I
+sent a written letter to the Czech General Estates, 
+requesting the foundation of an engineering school.
+</pre>
+
+<b>Output</b><br>
+<pre>+--+--------+-----+--------+----+
+|  |        |     |       I|    |
+|  |        |     |  Joseph|    |
+|  |      3,|  the| Emperor|   a|
+|On|February|1707,|Austrian|sent|
++--+----+---+-----+-------++----+--+
+|     to|   |     |       |        |
+| letter|   |     |       |        |
+|written|the|Czech|General|Estates,|
++-------+--++-----+---+---+-------++
+|          |        an|           |
+|       the|        of|    school.|
+|requesting|foundation|engineering|
++----------+----------+-----------+
+</pre>
+</td>
+
+    </tr>
+</tbody></table>
+</center>
+
+
+
+<hr>
+<h3><font color="blue">Public data</font></h3>
+<p align="justify">
+The public data set is intended for easier debugging and approximate 
+program correctness checking. The public data set is stored also in the 
+upload system and each time a student submits a solution it is run on 
+the public dataset and the program output to stdout and stderr is 
+available to him/her.
+<br>
+<a href="https://cw.felk.cvut.cz/brute/data/ae/release/2019l_be5b33pge/pge19/evaluation/getdata.php?task=tiledfile&amp;item=datapub.zip"><b>Link to public data set</b></a>
+</p>
+
+</div>
+
+
+</body></html>

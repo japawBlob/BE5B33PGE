@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="cache-control" content="no-cache">
+  <link rel="stylesheet" type="text/css" href="Problem%20Assignment%20BM33PAL_files/default.html">
+  <title>Problem Assignment BM33PAL</title>
+</head>
+<body>
+ <div class="main">
+
+<h2><font color="blue">Tiled Text Files</font></h2>
+
+<i>Before you start reading the deatils of the problem statement, you may want to look at the examples and at the public data
+available at the bottom of the page to get an intuitive visual understanding of the task. The detailed description below
+would be then easier to read and comprehend, hopefully.
+</i>
+<br><br>
+
+The university team developing AI modules for the autonomous vehicles driving software is currently working on a problem
+of text recognition in images captured by vehicle cameras.<br>
+They are preparing a set of artificial images to test the modules.
+Each image consists of a natural scene into which is pasted a
+computer generated image of some text.  Before the text is renedered, it is stored in text files which
+formatting reflects, to some degree, the appearance of the final rendering.
+<br>
+
+Each text is originally stored in a plain text file, called input file.
+Then, the input file is converted to the so-called tiled file, which is later used as an input to the
+image renderer.
+<br><br>
+
+The description of the tiled file and its contents is given below.
+<br><br>
+
+A <b>tiled file</b> is a regular text file, it differs from usual text files only by the arrangment of the text information stored in it.<br>
+
+The text in the tiled text file, when printed with a non-proportional font, appears as printed on separate tiles.
+Each <b>tile</b> consists of a tile header, a tile border and tile body.
+<br><br>
+The <b>tile header</b> is a rectangular area which contains information about the text in the tile body.
+The header contains three lines of text, there is always one horizontal space between the header text and the header border.
+The header contains the text:
+<pre> Tile:   &lt;tileNumber&gt;
+ Width:  &lt;widthValue&gt;
+ Height: &lt;heightValue&gt;
+</pre>
+All three values <code>tileNumber</code>, <code>widthValue</code>, <code>heightValue</code>
+ are integers and are all right aligned,
+that is, their last characters share the same column in the tiled file. 
+ The first character of the longest of these three values
+is positioned in the text column 11, provided that the leftmost border 
+of the tile header is positioned in the text column 1.<br>
+The value <code>tileNumber</code> describes the number of the tile in 
+the tiled file, the first tile has number 1, the next tile
+has number 2 and so on. The number of tiles in the tiled file is the 
+same as the number of file segments (see below) in the input file.<br>
+The value <code>widthValue</code> describes the width of the interior of the tile body, it is equal to the length of the longest word in the
+tile body.<br>
+The value <code>heightValue</code> describes the height of the interior of the tile body, it is equal to the number of words in the
+tile body.
+<br><br>
+
+The <b>tile body</b> is a rectangular area containing at least one word, each word occupies one line.
+The part in the tile area where no character of any word appears is filled with spaces.
+The area of the tile body is minimum possible.
+<br><br>
+
+The <b>tile border</b> is one character wide and it is printed around the tile header and around the tile body.
+The corners of the tile header and the tile body are plus signs ( '+', ASCII 43).
+The other symbols at the tile border are minus sign ( '-', ASCII 45) which are printed on the horizontal borders
+and the vertical bar ( '|', ASCII 124 ) which are printed on the vertical borders. <br>
+The bottom border of the tile header and the top border of the tile body  are printed on the same text line.
+All four corners (two belonging to the bottom of the tile header border and two belonging to the top of the tile body border)
+are printed on the common line, the remaining characters on that line are minus signs. If two corners
+overlap they are printed with a single plus sign.
+<br><br>
+
+A <b>word</b> in an input file is a sequence of consecutive characters which does not contain any whitespace character.
+Also, the first character of a word is either a first character in the text line
+or it is immediately preceded by a whitespace character. Additionally,
+the last character of each word is either the last character in the text line
+or it is immediately followed by a whitespace character.
+
+<br><br>
+
+A <b>file segment</b> in an input file is a contiguous subsequence of words in the input file.
+The length of the file segment is the number of the words it contains.
+The lengths of words in a segment form a non-increasing sequence.
+Note that file segment does not contain any whitespace characters.
+An input file is <b>correctly segmented</b> if each word in the input file belongs to some
+file segment and the number of file segments is minimum possible.
+<br><br>
+
+The text of the input file is stored in the tiled file as follows:
+<ul>
+<li>The input file is considered to be correctly segmented. Then, each file segment
+is written in the interior of a tile body in the tiled file.<br>
+</li><li>The order of file segments in the input file corresponds to the order of the tiles in the tiled file.<br>
+</li><li>The first word in a file segment is printed at the bottom of its corresponding tile body interior,
+the next word in the file segment is printed immediately above the first word and so on, the last word in the
+file segment is printed above all previous words of the same file segment.<br>
+</li><li>All words printed in a tile are aligned to the right border of the tile.<br>
+</li><li>There is no blank line between two consecutive tiles.
+</li></ul>
+
+
+
+<h3><font color="blue">The task</font></h3>
+<p align="justify">
+Given an input text file  produce an output tiled file according to description above.
+</p>
+
+<hr>
+
+<h3><font color="blue">Input</font></h3>
+<p align="justify">
+The input represents the contents of the input file.
+Each line in the output corresponds to a line in the input file.
+All characters in the input file are either printable ASCII characters or end-of-line characters
+or tabulator characters.
+Note that the input file may contain one or more consecutive empty lines.<br>
+The size of the input file is less than 900 KB.
+
+
+</p><h3><font color="blue">Output</font></h3>
+<p align="justify">
+The output contains the copy of the contents of the tiled file.
+Each line in the output corresponds to a line in the tiled file.
+</p>
+
+<center>
+<table width="95%">
+	<colgroup><col width="25%">
+	<col width="30%">
+	<col width="40%">
+	<col width="5%">
+	<col width="10%">
+    </colgroup><tbody><tr>
+
+<td valign="top">
+	<h3><font color="blue">Example 1</font></h3>
+<b>Input</b><br>
+<pre>ab cdefg hij
+kl mn opq rstuv wx
+yz01 23 4567 89
+</pre>
+
+<b>Output</b><br>
+<pre>+-----------+
+| Tile:   1 |
+| Width:  2 |
+| Height: 1 |
++--+--------+
+|ab|
++--+
++-----------+
+| Tile:   2 |
+| Width:  5 |
+| Height: 4 |
++-----+-----+
+|   mn|
+|   kl|
+|  hij|
+|cdefg|
++-----+
++-----------+
+| Tile:   3 |
+| Width:  3 |
+| Height: 1 |
++---+-------+
+|opq|
++---+
++-----------+
+| Tile:   4 |
+| Width:  5 |
+| Height: 2 |
++-----+-----+
+|   wx|
+|rstuv|
++-----+
++-----------+
+| Tile:   5 |
+| Width:  4 |
+| Height: 2 |
++----+------+
+|  23|
+|yz01|
++----+
++-----------+
+| Tile:   6 |
+| Width:  4 |
+| Height: 2 |
++----+------+
+|  89|
+|4567|
++----+
+</pre>
+
+
+</td>
+
+<td valign="top">		
+	<h3><font color="blue">Example 2</font></h3>
+<b>Input</b><br>
+<pre>98 7654 32 01zy
+xw vutsr pqo nm lk
+jih gfedc ba
+</pre>
+
+<b>Output</b><br>
+<pre>+-----------+
+| Tile:   1 |
+| Width:  2 |
+| Height: 1 |
++--+--------+
+|98|
++--+
++-----------+
+| Tile:   2 |
+| Width:  4 |
+| Height: 2 |
++----+------+
+|  32|
+|7654|
++----+
++-----------+
+| Tile:   3 |
+| Width:  4 |
+| Height: 2 |
++----+------+
+|  xw|
+|01zy|
++----+
++-----------+
+| Tile:   4 |
+| Width:  5 |
+| Height: 4 |
++-----+-----+
+|   lk|
+|   nm|
+|  pqo|
+|vutsr|
++-----+
++-----------+
+| Tile:   5 |
+| Width:  3 |
+| Height: 1 |
++---+-------+
+|jih|
++---+
++-----------+
+| Tile:   6 |
+| Width:  5 |
+| Height: 2 |
++-----+-----+
+|   ba|
+|gfedc|
++-----+
+</pre>
+
+
+</td>
+
+<td valign="top">		
+	<h3><font color="blue">Example 3</font></h3>
+<b>Input</b><br>
+<pre>On February 3, 1707, the Austrian Emperor Joseph I
+sent a written letter to the Czech General Estates, 
+requesting the foundation of an engineering school.
+</pre>
+
+<b>Output</b><br>
+<pre>+-----------+
+| Tile:   1 |
+| Width:  2 |
+| Height: 1 |
++--+--------+
+|On|
++--+
++-----------+
+| Tile:   2 |
+| Width:  8 |
+| Height: 2 |
++--------+--+
+|      3,|
+|February|
++--------+
++-----------+
+| Tile:   3 |
+| Width:  5 |
+| Height: 2 |
++-----+-----+
+|  the|
+|1707,|
++-----+
++-----------+
+| Tile:   4 |
+| Width:  8 |
+| Height: 4 |
++--------+--+
+|       I|
+|  Joseph|
+| Emperor|
+|Austrian|
++--------+
++-----------+
+| Tile:   5 |
+| Width:  4 |
+| Height: 2 |
++----+------+
+|   a|
+|sent|
++----+
++-----------+
+| Tile:   6 |
+| Width:  7 |
+| Height: 3 |
++-------+---+
+|     to|
+| letter|
+|written|
++-------+
++-----------+
+| Tile:   7 |
+| Width:  3 |
+| Height: 1 |
++---+-------+
+|the|
++---+
++-----------+
+| Tile:   8 |
+| Width:  5 |
+| Height: 1 |
++-----+-----+
+|Czech|
++-----+
++-----------+
+| Tile:   9 |
+| Width:  7 |
+| Height: 1 |
++-------+---+
+|General|
++-------+
++------------+
+| Tile:   10 |
+| Width:   8 |
+| Height:  1 |
++--------+---+
+|Estates,|
++--------+
++------------+
+| Tile:   11 |
+| Width:  10 |
+| Height:  2 |
++----------+-+
+|       the|
+|requesting|
++----------+
++------------+
+| Tile:   12 |
+| Width:  10 |
+| Height:  3 |
++----------+-+
+|        an|
+|        of|
+|foundation|
++----------+
++------------+
+| Tile:   13 |
+| Width:  11 |
+| Height:  2 |
++-----------++
+|    school.|
+|engineering|
++-----------+
+</pre>
+</td>
+
+    </tr>
+</tbody></table>
+</center>
+
+
+
+<hr>
+<h3><font color="blue">Public data</font></h3>
+<p align="justify">
+The public data set is intended for easier debugging and approximate 
+program correctness checking. The public data set is stored also in the 
+upload system and each time a student submits a solution it is run on 
+the public dataset and the program output to stdout and stderr is 
+available to him/her.
+<br>
+<a href="https://cw.felk.cvut.cz/brute/data/ae/release/2019l_be5b33pge/pge19/evaluation/getdata.php?task=tiledfile0&amp;item=datapub.zip"><b>Link to public data set</b></a>
+</p>
+
+</div>
+
+
+</body></html>

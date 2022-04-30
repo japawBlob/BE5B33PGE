@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="cache-control" content="no-cache">
+  <link rel="stylesheet" type="text/css" href="Problem%20Assignment%20BM33PAL_files/default.html">
+  <title>Problem Assignment BM33PAL</title>
+</head>
+<body>
+ <div class="main">
+
+<h2><font color="blue">L-E-R Trees</font></h2>
+
+<p align="justify">
+
+The team of professor Fabinaris Suchbaum, located in  Max Planck 
+Institute for Software Systems in Saarbrücken, Germany, is an 
+internationally acclaimed group of researches who had made many 
+fundamental contributions to numerous fields of computer science, 
+especially to various kinds of binary tree structures. You can read 
+about some of their most famous past projects
+<a href="https://cw.felk.cvut.cz/courses/a4b33alg/task.php?task=barebranchesBST">here</a> and
+<a href="https://cw.felk.cvut.cz/courses/a4b33alg/task.php?task=binbinsearchtree">here</a> and
+<a href="https://cw.felk.cvut.cz/courses/a4b33alg/task.php?task=intervaldelete">here</a> and
+<a href="https://cw.felk.cvut.cz/courses/a4b33alg/task.php?task=finetunedAVL">here</a> and
+<a href="https://cw.felk.cvut.cz/courses/a4b33alg/task.php?task=reducedAVL">here</a> and
+<a href="https://cw.felk.cvut.cz/courses/a4b33alg/task.php?task=relaxedAVL">here</a>.
+<br>
+This year, the team started experimenting with so called L-E-R trees described below.
+<br>
+<br>
+Let <i>T</i> be a binary tree in which each node is coloured white or black. Let <i>x</i> be a node in <i>T</i>.
+We define <i>w</i>(<i>x</i>) and  <i>ww</i>(<i>x</i>) to be the number of white nodes in the left subtree and in the right subtree of <i>x</i>, respectively.
+Analogously, we define <i>b</i>(<i>x</i>) and <i>bb</i>(<i>x</i>) to be the number of black nodes in the left subtree and in the right subtree of <i>x</i>, respectively.
+We say that <i>x</i> is a principal node if all four values  <i>w</i>(<i>x</i>), <i>ww</i>(<i>x</i>), <i>b</i>(<i>x</i>), <i>bb</i>(<i>x</i>) are positive.
+Furthermore, if <i>x</i> is a principal node then we say that
+</p><ul>
+  <li> <i>x</i> is a L-node if <i>w</i>(<i>x</i>)/<i>b</i>(<i>x</i>) &gt; <i>ww</i>(<i>x</i>)/<i>bb</i>(<i>x</i>),
+  </li><li> <i>x</i> is a E-node if <i>w</i>(<i>x</i>)/<i>b</i>(<i>x</i>) = <i>ww</i>(<i>x</i>)/<i>bb</i>(<i>x</i>),
+  </li><li> <i>x</i> is a R-node if <i>w</i>(<i>x</i>)/<i>b</i>(<i>x</i>) &lt; <i>ww</i>(<i>x</i>)/<i>bb</i>(<i>x</i>).
+</li></ul>
+
+L-E-R tree is a binary tree each of which nodes is coloured either white
+ or black and which contains at least one principal node.
+<br>
+<br>
+Before the team conducts any further experiments they have to establish basic properties of selected L-E-R trees.
+
+<p></p>
+
+
+&nbsp; 
+&nbsp; 
+&nbsp; <table width="690" border="0" align="center"><tbody><tr><td align="center">
+<img style="width: 673px; height: 226px;" src="Problem%20Assignment%20BM33PAL_files/getdata.php"> <br>
+<!--
+<img style="width: 673px; height: 226px;" src="img1.png"/> <br>
+	-->
+<br>
+<b>Image 1.</b> An example of a L-E-R tree with 31 nodes and 7 principal
+ nodes. L-nodes, E-nodes and R-nodes are marked by corresponding labels 
+L, E and R. The image illustrates Example 1 below.
+
+  </td></tr>
+</tbody></table>
+
+<h3><font color="blue">The task</font></h3>
+<p align="justify">
+You are given a L-E-R tree. Count the number of L-nodes, E-nodes and R-nodes in it.
+</p>
+<hr>
+
+
+<h3><font color="blue">Input</font></h3>
+<p align="justify">
+The first input line contains one integer <i>N</i> representing the number of nodes in the tree.
+We assume that the nodes are labeled 0, 1, ...,  <i>N</i>−1 and the root of the tree is labeled by 0.
+<br>
+The next line contains <i>N</i> integers, separated by spaces, which 
+represent the list of colors of particular nodes. The colors are listed 
+in ascending order of node labels. The first integers represents the 
+color of node 0, the second integer represents the color of node 1, etc.
+ White color is coded by 0, black color is coded by 1.
+
+<br>
+Next, there are <i>N</i> −1 text lines, each specifies one edge in the tree. The line contains three integers <i>a</i>, <i>b</i>, <i>c</i> separated by space. Integer <i>a</i> is the label of the parent of the node which label is <i>b</i>. The value of <i>c</i> is either 0 or 1.  If <i>c</i> = 0 then <i>b</i> is the left child of <i>a</i>, otherwise it is the right child of <i>a</i>. The edges are listed in no particular order.
+<br>
+It holds, 2 ≤ <i>N</i> ≤ 150000.
+</p>
+
+<h3><font color="blue">Output</font></h3>
+<p align="justify">
+The output contains one text line with three integers <i>L</i>, <i>E</i>, <i>R</i> separated by space and representing (in this order) the number of  L-nodes, E-nodes, R-nodes, in the input tree.
+</p>
+
+
+<h3><font color="blue">Example 1</font></h3>
+<b>Input</b><br>
+<pre>31
+1 0 0 0 0 0 1 1 1 0 0 1 0 1 0 0 1 0 1 1 1 0 1 0 0 1 0 1 1 0 0
+9 10 0
+9 11 1
+19 21 0
+19 22 1
+20 23 0
+26 28 0
+27 29 0
+27 30 1
+25 27 1
+25 26 0
+18 24 1
+17 20 1
+17 19 0
+12 14 0
+6 9 0
+5 8 1
+5 7 0
+3 5 0
+3 6 1
+4 12 0
+4 13 1
+15 17 0
+15 18 1
+16 25 1
+2 16 1
+2 15 0
+1 4 1
+1 3 0
+0 1 0
+0 2 1
+</pre>
+
+<b>Output</b><br>
+<pre>2 1 4
+</pre>
+
+The tree in Example 1 is  depicted in Image 1.
+
+
+<!-- EXAMPLE 2 -------------------------------------------------------------------------------------------------------------------- -->
+
+
+
+<h3><font color="blue">Example 2</font></h3>
+<b>Input</b><br>
+<pre>5
+0 0 1 0 1
+1 2 0
+0 1 0
+0 3 1
+3 4 1
+
+</pre>
+
+<b>Output</b><br>
+<pre>0 1 0
+</pre>
+
+
+<!-- EXAMPLE 3 -------------------------------------------------------------------------------------------------------------------- -->
+
+
+ <h3><font color="blue">Example 3</font></h3>
+
+<b>Input</b><br>
+<pre>15
+0 0 0 1 0 0 1 1 0 1 0 1 0 1 0
+0 1 0
+0 2 1
+1 3 0
+1 4 1
+2 5 0
+2 6 1
+3 7 0
+3 8 1
+4 9 0
+4 10 1
+5 11 0
+5 12 1
+6 13 0
+6 14 1
+</pre>
+
+<b>Output</b><br>
+<pre>1 1 1
+</pre>
+
+
+
+<hr>
+
+<h3><font color="blue">Public data</font></h3>
+<p align="justify">
+The public data set is intended for easier debugging and approximate 
+program correctness checking. The public data set is stored also in the 
+upload system and each time a student submits a solution it is run on 
+the public dataset and the program output to  stdout and stderr is 
+available to him/her.
+<br>
+<a href="https://cw.felk.cvut.cz/brute/data/ae/release/2021l_be5b33pge/pge2021/evaluation/getdata.php?task=LERtrees_py&amp;item=datapub.zip"><b>Link to public data set</b></a>
+</p>
+
+
+
+</div>
+
+
+
+
+
+</body></html>

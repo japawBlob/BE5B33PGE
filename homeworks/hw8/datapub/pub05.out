@@ -1,0 +1,77 @@
++-----+------+----+-----------+-------+------+-------+---------+----------+
+|     |      |    |           |       |   the|       |         |          |
+|     |      |    |           |     up|solves|       |         |          |
+|     |     I|    |       this|     me|search|       |        a|        by|
+|     |  time|    |    Pearls,| brings|Binary|    [of|   within|    array]|
+|Every|single|read|Programming|passage|short:|problem|searching|pre-sorted|
++-----+-+----++---+--+-----+--+--+----++-----++------+-+---+---+--+-------+--+
+|       |     |      |     |     |     |    is|        |   |      |          |
+|       |     |      |     |     |     |    it|        |   |      |          |
+|       |     |      |     |     |     |    if|        |   |      |          |
+|      a|     |      |     |     |     |    be|        |   |      |          |
+|     of|     |      |     |     |     |  must|        |   |      |          |
+|  track|     |   the|   in|    T|  the|value]|      in|   |      |       the|
+|keeping|range|within|array|which|[i.e.|sought|anywhere|the|array.|Initially,|
++-----+-+-+---+--+---+-+---+--+--+-----++-----++-------+---+------+---+------+
+|     |   |   The|     |      |         |      |      T|   |       the|      |
+|   is|   |array.|   is|    by|      its|      |     to|   |      half|   The|
+|range|the|entire|range|shrunk|comparing|middle|element|and|discarding|range.|
++-----+-+-+------++--+-+------+-+---+---+--+---+-+-----+---+-+----+---+-+----+-+
+|       |        T|  |          |   |      |     |     |     |  is|   be|    an|
+|       |    until|  |        in|   |    or|  the|   in|   it| lie|   to|    In|
+|process|continues|is|discovered|the|array,|until|range|which|must|known|empty.|
++-------+-+------++--+---+------+---+-+----+-----++----++----+----+-+---+-+----+
+|         |      |       |            |        the|     |           |     |
+|         |      |       |            |       with|     |           |     |
+|      the|      |       |            |       that|     |           |     |
+|   table,|  uses|log2(N)|        Most|      think|     |         in|     |
+|N-element|search|roughly|comparisons.|programmers|above|description|hand,|
++-------+-+--+---+-+-----++----+-----++------+----+--+--+---+-------+----++
+|       |    |     |      |    |     |     by|       |   and|       |    |
+|       |    |     |   The|    |     |     is|   this|   now|       |    |
+|    the|  is|     |wrong.| way|     |   this|   down| right|    the|    |
+|writing|code|easy;|theyre|only|youll|believe|putting|column|writing|code|
++-------+-+--+-----+------++---+---+-+--+----+-------+----+-+----+--+--+-+-----+
+|      Ive|        |       |       |    |    |           a|      |     |       |
+|      it.|        |       |       | and|    |         had|      |     |       |
+|      Try|    this|     in|     at|Labs|    | programmers|    of|   to|    the|
+|yourself.|assigned|problem|courses|Bell|IBM.|Professional|couple|hours|convert|
++-----+---+-------++------++--+----+---++----+-------+----+-----++----++--+---++
+|     |          a|       |   |        |     |       |       was|     | of|   |
+|     |       into|     in|   |      of|     |      a|pseudocode|   At|end|   |
+|above|description|program|the|language|their|choice;|high-level|fine.|the|the|
++-----+---+------++-------+--++------+-+---+-+---+---+--+-------+-----+-+-+---+
+|         |      |        had|       |     |     |      |       |    the|
+|         |      |       they|    the|     |     |      |       |  which|
+|         |   the|       that|    for|     | take|      |       |  code,|
+|    time,|   all|   reported|   code|   We| then|      |     to|  their|
+|specified|almost|programmers|correct|task.|would|thirty|minutes|examine|
++---------+-+----+------+----+--+----+-----+-+---+------+-+-----+-+-----+-+
+|           |    |      |    and|   a|       |            |       |       |
+|        did|test|    In|classes|over|       |         the| varied| ninety|
+|programmers|with|cases.|several|with|hundred|programmers,|results|little:|
++-------+---+----+------+-----+-+----+-+-----+------+-----+---+---+-------+---+
+|       |   |         in|     |        |     |      |         |   |           |
+|       |   |       bugs|     |       I|     |      |         |   |           |
+|     of|   |      found|     |    (and|     |      |       of|   |         of|
+|percent|the|programmers|their|programs|wasnt|always|convinced|the|correctness|
++---+---++--+--+----+---+---+-+-+------++----++-----+-+-------+---++---+----+-+
+|   |    |     |    |       |   |   only|     |       |          to|   |    |
+|   |    |     |    |       |   |  time,|     |       |        able|   |    |
+|   |    |     |    |       |   |  ample|     |       |        were|   |    |
+|   |  in|   no|were|      I|   |  given|  ten|     of| programmers|   |    |
+|the|code|which|bugs|found).|was|amazed:|about|percent|professional|get|this|
++---+-+--+----++---++----+--+-+-+--+----+-----+---+---+---+-------++--++----+-+
+|     |    But|    |     |  to|task|          |   |       |     of|   |       |
+|     | right.|    |  the|ones|this|        in|   |     in|  6.2.1|   |    and|
+|small|program|they|arent|only|find|difficult:|the|history|Section|his|Sorting|
++-----+----+--+---++---+-+---++----+------+---+---+-+-----+-----+-+---+---+---+
+|          |      |    |     |     |   was|         |     |     |   search|
+|     Knuth|   out|    |  the|     |search|       in|  the|     |   binary|
+|Searching,|points|that|while|first|binary|published|1946,|first|published|
++-------+--+---+--+----++----+-----++-----+---+-----++----+-----+---------+
+|    not|   Jon|        |           |         |      |
+|    did| 1962.|        |       (1st|         |      |
+|   bugs| until|        |     Pearls|      pp.|      |
+|without|appear|Bentley,|Programming|edition),|35-36.|
++-------+------+--------+-----------+---------+------+

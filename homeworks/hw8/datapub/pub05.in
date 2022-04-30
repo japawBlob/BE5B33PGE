@@ -1,0 +1,39 @@
+80
+Every single time I read Programming Pearls, this passage brings me up short:
+
+    Binary search solves the problem [of searching within a pre-sorted array] 
+	by keeping track of a range within the array in which T 
+	[i.e. the sought value] must be if it is anywhere in the array.  
+	Initially, the range is the entire array.  
+	The range is shrunk by comparing its middle element to T 
+	and discarding half the range.  The process continues until T is 
+	discovered in the array, or until the range in which it must lie 
+	is known to be empty.
+	In an N-element table, the search uses roughly log2(N) comparisons.
+
+    Most programmers think that with the above description in hand, 
+	writing the code is easy; theyre wrong.  
+	The only way youll believe this is by putting down 
+	this column right now and writing the code yourself.  Try it.
+
+    Ive assigned this problem in courses at Bell Labs and IBM.  
+	Professional programmers had a couple of hours to convert the above 
+	description into a program in the language of their choice; 
+	a high-level pseudocode was fine.  At the end of the specified time, 
+	almost all the programmers reported that they had correct code 
+	for the task.  We would then take thirty minutes to examine 
+	their code, which the programmers did with test cases.  
+	In several classes and with over a hundred programmers, 
+	the results varied little: ninety percent of the programmers found 
+	bugs in their programs (and I wasnt always convinced of the correctness
+	 of the code in which no bugs were found).
+
+    I was amazed: given ample time, 
+	only about ten percent of professional programmers were able 
+	to get this small program right.  But they arent the only ones 
+	to find this task difficult: in the history in Section 6.2.1 
+	of his Sorting and Searching, Knuth points out that while the 
+	first binary search was published in 1946, 
+	the first published binary search without bugs did not appear until 1962.
+
+     Jon Bentley, Programming Pearls (1st edition), pp. 35-36.
