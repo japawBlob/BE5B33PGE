@@ -3,23 +3,51 @@ matrix_height = 0
 
 
 def print_blocks():
-    for i in range(len(matrix)):
-        for j in range(len(matrix[i])):
-            print(matrix[i][j], end='')
+    for i in matrix:
+        print(i, end="")
 
 
 def add_block(block, block_width, block_height):
     if len(matrix) < 1:
-        matrix.append([])
-        matrix[matrix_height].append('+')
+        line = ""
+        line += 'x'
         for i in range(block_width-1):
-            matrix[matrix_height].append('-')
-        matrix[matrix_height].append('+')
-        matrix.append('\n')
-    for i in range(block_height+1):
-        for j in range(block_width):
-            matrix.append('0')
-        matrix.append('\n')
+            line += '='
+        line += 'x'
+        line += '\n'
+        matrix.append(line)
+    # Modify previous line
+    line = list(matrix[-1])
+    counter = 0
+    for tile in block:
+        if counter < len(line):
+            line[counter] = '+'
+            counter += 1
+            for j in range(counter, counter+len(tile)):
+                if line[j] == '+':
+                    continue
+                else:
+                    line[j] = '-'
+            counter += len(tile)+1
+        else:
+            line.append('+')
+            counter += 1
+            for j in range(counter, len(tile)+1):
+                line.append('-')
+            counter += len(tile)+1
+    if counter < len(line):
+        line[counter] = '+'
+    else:
+        line.append('+')
+        counter += 1
+
+    matrix[-1] = "".join(line)
+    for i in range(block_height):
+        line = ""
+        for j in range(block_width+1):
+            line += '0'
+        line += '\n'
+        matrix.append(line)
 
     for i in block:
         print(i)
@@ -67,7 +95,7 @@ if __name__ == '__main__':
                 tile_width = max(tile_width, len(line[i]))
             else:
                 if block_width + tile_width + len(current_block) + 1 >= max_width:
-                    add_block(current_block, block_width, tile_height)
+                    add_block(current_block, block_width, block_height)
                     block_width = 0
                     block_height = 0
                     current_block.clear()
